@@ -15,7 +15,7 @@ android:
  - sys-img-armeabi-v7a-android-21
 before_install:
  - yes | sdkmanager "platforms;android-21"
- deploy:
+deploy:
  provider: releases
  apikey: $GITHUB_KEY
  file: app/build/outputs/apk/app-release.apk
