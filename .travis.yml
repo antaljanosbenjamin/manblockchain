@@ -14,7 +14,7 @@ android:
  - addon-google_apis-google-19
  - sys-img-armeabi-v7a-android-21
 before_install:
- - yes | sdkmanager "platforms;android-26"
+ - yes | sdkmanager "platforms;android-27"
 deploy:
  provider: releases
  apikey: $GITHUB_KEY
@@ -22,4 +22,5 @@ deploy:
  skip_cleanup: true
  on:
  tags: true
+script: ./gradlew :app:build 
  
