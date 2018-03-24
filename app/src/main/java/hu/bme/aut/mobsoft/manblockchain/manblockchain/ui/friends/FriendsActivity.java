@@ -1,4 +1,4 @@
-package hu.bme.aut.mobsoft.manblockchain.manblockchain;
+package hu.bme.aut.mobsoft.manblockchain.manblockchain.ui.friends;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -13,8 +13,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import hu.bme.aut.mobsoft.manblockchain.manblockchain.R;
+
 public class FriendsActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, FriendsScreen {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
