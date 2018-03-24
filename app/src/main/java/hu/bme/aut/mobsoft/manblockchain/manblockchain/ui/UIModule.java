@@ -2,11 +2,16 @@ package hu.bme.aut.mobsoft.manblockchain.manblockchain.ui;
 
 import android.content.Context;
 
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
+
 import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import hu.bme.aut.mobsoft.manblockchain.manblockchain.di.Network;
 import hu.bme.aut.mobsoft.manblockchain.manblockchain.ui.friends.FriendsPresenter;
+import hu.bme.aut.mobsoft.manblockchain.manblockchain.ui.main.MainPresenter;
 
 /**
  * Created by Antal János Benjamin on 2018. 03. 24..
@@ -27,7 +32,22 @@ public class UIModule {
 
     @Provides
     @Singleton
-    public FriendsPresenter provideMainPresenter() {
+    public MainPresenter provideMainPresenter() {
+        return new MainPresenter();
+    }
+
+
+    @Provides
+    @Singleton
+    public FriendsPresenter provideFriendsPresenter() {
         return new FriendsPresenter();
+    }
+
+
+    @Provides
+    @Singleton
+    @Network
+    public Executor provideNetworkExecutor() {
+        return Executors.newFixedThreadPool(1);
     }
 }
