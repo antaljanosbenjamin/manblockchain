@@ -26,6 +26,7 @@ public class FriendsFragment extends Fragment implements FriendsScreen {
 
         friendsPresenter.attachScreen(this);
     }
+
     public FriendsFragment() {
         ManBlockchainApplication.injector.inject(this);
     }
@@ -35,9 +36,10 @@ public class FriendsFragment extends Fragment implements FriendsScreen {
 
     }
 
-    @Override
-    public void editFriend(Friend friend) {
+    public void onEditFriend(Friend friend) {
+    }
 
+    public void onDeleteFriend(Friend friend) {
     }
 
     @Override

@@ -11,7 +11,6 @@ import dagger.Module;
 import dagger.Provides;
 import hu.bme.aut.mobsoft.manblockchain.manblockchain.di.Network;
 import hu.bme.aut.mobsoft.manblockchain.manblockchain.ui.friends.FriendsPresenter;
-import hu.bme.aut.mobsoft.manblockchain.manblockchain.ui.main.MainPresenter;
 
 /**
  * Created by Antal János Benjamin on 2018. 03. 24..
@@ -29,13 +28,6 @@ public class UIModule {
     public Context provideContext() {
         return context;
     }
-
-    @Provides
-    @Singleton
-    public MainPresenter provideMainPresenter() {
-        return new MainPresenter();
-    }
-
 
     @Provides
     @Singleton

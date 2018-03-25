@@ -12,7 +12,5 @@ public interface FriendsScreen {
 
     void showFriends(List<Friend> friends);
 
-    void editFriend(Friend friend);
-
     void showNetworkError(String errorMsg);
 }
