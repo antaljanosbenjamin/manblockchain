@@ -4,7 +4,7 @@ android {
     buildToolsVersion "27.0.3"
     compileSdkVersion 27
     defaultConfig {
-        applicationId "hu.bme.aut.mobsoft.manblockchain.manblockchain"
+        applicationId "hu.bme.aut.mobsoft.manblockchain"
         minSdkVersion 19
         targetSdkVersion 27
         versionCode 1
