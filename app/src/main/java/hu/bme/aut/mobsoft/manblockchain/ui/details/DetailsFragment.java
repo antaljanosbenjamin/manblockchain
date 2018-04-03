@@ -1,5 +1,7 @@
 package hu.bme.aut.mobsoft.manblockchain.ui.details;
 
+import javax.inject.Inject;
+
 import hu.bme.aut.mobsoft.manblockchain.model.Friend;
 
 /**
@@ -7,8 +9,12 @@ import hu.bme.aut.mobsoft.manblockchain.model.Friend;
  */
 
 public class DetailsFragment implements DetailsScreen {
+
+    @Inject
+    DetailsPresenter detailsPresenter;
+
     @Override
-    public void goBack() {
+    public void loadFriend(Friend friend) {
 
     }
 

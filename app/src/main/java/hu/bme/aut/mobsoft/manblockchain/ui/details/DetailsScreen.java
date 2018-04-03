@@ -8,7 +8,7 @@ import hu.bme.aut.mobsoft.manblockchain.model.Friend;
 
 public interface DetailsScreen {
 
-    void goBack();
+    void loadFriend(Friend friend);
 
     void saveFriend(Friend friend);
 }

@@ -36,6 +36,14 @@ public class FriendsFragment extends Fragment implements FriendsScreen {
 
     }
 
+    public void onAddNewFriend(){
+
+    }
+
+    public void addFriendFromFacebook(){
+
+    }
+
     public void onEditFriend(Friend friend) {
     }
 

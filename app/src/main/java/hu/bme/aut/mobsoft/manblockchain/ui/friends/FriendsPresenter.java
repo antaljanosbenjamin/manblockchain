@@ -26,7 +26,6 @@ public class FriendsPresenter extends Presenter<FriendsScreen> {
     @Network
     Executor networkExecutor;
 
-
     @Inject
     FacebookInteractor facebookInteractor;
 
@@ -45,7 +44,7 @@ public class FriendsPresenter extends Presenter<FriendsScreen> {
         super.detachScreen();
     }
 
-    public void addFriendFromFacebook() {
+    public void addNewFriendFromFacebook() {
         networkExecutor.execute(new Runnable() {
             @Override
             public void run() {
@@ -58,6 +57,12 @@ public class FriendsPresenter extends Presenter<FriendsScreen> {
     }
 
     public void modifyFriend(Friend friend) {
+    }
+
+    public void deleteFriend(Friend friend) {
+    }
+
+    public void changeStarOnFriend(Friend friend) {
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)

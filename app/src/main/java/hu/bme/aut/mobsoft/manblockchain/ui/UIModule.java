@@ -10,6 +10,8 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 import hu.bme.aut.mobsoft.manblockchain.di.Network;
+import hu.bme.aut.mobsoft.manblockchain.ui.about.AboutPresenter;
+import hu.bme.aut.mobsoft.manblockchain.ui.details.DetailsPresenter;
 import hu.bme.aut.mobsoft.manblockchain.ui.friends.FriendsPresenter;
 
 /**
@@ -33,6 +35,20 @@ public class UIModule {
     @Singleton
     public FriendsPresenter provideFriendsPresenter() {
         return new FriendsPresenter();
+    }
+
+
+    @Provides
+    @Singleton
+    public DetailsPresenter provideDetailsPresenter() {
+        return new DetailsPresenter();
+    }
+
+
+    @Provides
+    @Singleton
+    public AboutPresenter provideAboutPresenter() {
+        return new AboutPresenter();
     }
 
 
