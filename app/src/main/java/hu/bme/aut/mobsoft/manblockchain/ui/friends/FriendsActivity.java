@@ -12,8 +12,17 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
+import javax.inject.Inject;
+
+import hu.bme.aut.mobsoft.manblockchain.ManBlockchainApplication;
 import hu.bme.aut.mobsoft.manblockchain.R;
+import hu.bme.aut.mobsoft.manblockchain.model.Friend;
+import hu.bme.aut.mobsoft.manblockchain.model.Friends;
+import hu.bme.aut.mobsoft.manblockchain.network.FacebookAPI;
+import rx.Observable;
+import rx.functions.Action1;
 
 /**
  * Created by Antal János Benjamin on 2018. 03. 24..
@@ -21,8 +30,15 @@ import hu.bme.aut.mobsoft.manblockchain.R;
 
 public class FriendsActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+
+    @Inject
+    FacebookAPI facebookAPI;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        ManBlockchainApplication.injector.inject(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -45,6 +61,16 @@ public class FriendsActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        Observable<Friends> friends = facebookAPI.getNewFriends();
+        friends.subscribe(new Action1<Friends>() {
+            @Override
+            public void call(Friends friends) {
+                Toast.makeText(getApplicationContext(), "HAHAHAH", Toast.LENGTH_SHORT);
+                Friend f = friends.getResults().get(0);
+                Toast.makeText(getApplicationContext(), f.getEmail(), Toast.LENGTH_LONG);
+            }
+        });
     }
 
     @Override

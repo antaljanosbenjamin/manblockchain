@@ -16,7 +16,7 @@ public interface FacebookAPI {
      */
 
     @GET("api/")
-    Observable<Friends> apiGet();
+    public Observable<Friends> getNewFriends();
 
 
 
