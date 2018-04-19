@@ -4,6 +4,7 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Executor;
 
@@ -34,6 +35,7 @@ public class FriendsPresenter extends Presenter<FriendsScreen> {
     @Override
     public void attachScreen(FriendsScreen screen) {
         super.attachScreen(screen);
+        friends = new ArrayList<Friend>();
         ManBlockchainApplication.injector.inject(this);
         EventBus.getDefault().register(this);
     }
@@ -73,8 +75,8 @@ public class FriendsPresenter extends Presenter<FriendsScreen> {
                 screen.showNetworkError(event.getThrowable().getMessage());
             }
         } else {
+            friends.add(event.getFriend());
             if (screen != null) {
-                friends.add(event.getFriend());
                 screen.showFriends(friends);
             }
         }
