@@ -19,7 +19,7 @@ public class NetworkModule {
 
 	@Provides
 	@Singleton
-    public FacebookAPI provideArtistsApi(Retrofit.Builder retrofitBuilder) {
+    public FacebookAPI provideFacebookAPI(Retrofit.Builder retrofitBuilder) {
 	    FacebookAPI facebookAPI = retrofitBuilder.baseUrl(NetworkConfig.ENDPOINT_ADDRESS).build().create(FacebookAPI.class);
 	    return facebookAPI;
     }

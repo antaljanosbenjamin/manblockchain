@@ -14,6 +14,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import java.io.IOException;
+
 import javax.inject.Inject;
 
 import hu.bme.aut.mobsoft.manblockchain.ManBlockchainApplication;
@@ -21,6 +23,8 @@ import hu.bme.aut.mobsoft.manblockchain.R;
 import hu.bme.aut.mobsoft.manblockchain.model.Friend;
 import hu.bme.aut.mobsoft.manblockchain.model.Friends;
 import hu.bme.aut.mobsoft.manblockchain.network.FacebookAPI;
+import retrofit2.Call;
+import retrofit2.Response;
 import rx.Observable;
 import rx.functions.Action1;
 
@@ -48,8 +52,17 @@ public class FriendsActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Call<Friends> friendsRequest = facebookAPI.getNewFriends();
+                try {
+                    Response<Friends> friends = friendsRequest.execute();
+                    Toast.makeText(getApplicationContext(), "HAHAHAH", Toast.LENGTH_SHORT);
+                    Friend f = friends.body().getResults().get(0);
+                    Snackbar.make(view, f.getEmail(), Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
             }
         });
 
@@ -61,16 +74,6 @@ public class FriendsActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
-        Observable<Friends> friends = facebookAPI.getNewFriends();
-        friends.subscribe(new Action1<Friends>() {
-            @Override
-            public void call(Friends friends) {
-                Toast.makeText(getApplicationContext(), "HAHAHAH", Toast.LENGTH_SHORT);
-                Friend f = friends.getResults().get(0);
-                Toast.makeText(getApplicationContext(), f.getEmail(), Toast.LENGTH_LONG);
-            }
-        });
     }
 
     @Override
