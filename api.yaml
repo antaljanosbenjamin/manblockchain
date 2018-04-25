@@ -7,7 +7,7 @@ info:
     email: "antal.janos.benjamin@gmail.com"
 host: "randomuser.me"
 tags:
-- name: "api"
+- name: "Friend"
   description: "The very best API in the world"
 schemes:
 - "https"
@@ -15,7 +15,7 @@ paths:
   /api/:
     get:
       tags:
-      - "api"
+      - "Facebook"
       summary: "Get new friend"
       description: ""
       produces:
@@ -28,7 +28,7 @@ paths:
           schema:
             $ref: "#/definitions/Friends"
 definitions:
-  Friend:
+  FriendDTO:
     type: "object"
     properties:
       gender:
@@ -97,7 +97,7 @@ definitions:
             type: "string"
       nat:
         type: "string"
-  Friends:
+  FriendsDTO:
     type: "object"
     properties:
       results:

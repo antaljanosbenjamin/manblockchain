@@ -24,14 +24,7 @@ import javax.inject.Inject;
 import hu.bme.aut.mobsoft.manblockchain.ManBlockchainApplication;
 import hu.bme.aut.mobsoft.manblockchain.R;
 import hu.bme.aut.mobsoft.manblockchain.model.Friend;
-import hu.bme.aut.mobsoft.manblockchain.model.Friends;
-import hu.bme.aut.mobsoft.manblockchain.network.FacebookAPI;
 import hu.bme.aut.mobsoft.manblockchain.ui.about.AboutFragment;
-import retrofit2.Call;
-import retrofit2.Response;
-import rx.Observable;
-import rx.functions.Action1;
-
 /**
  * Created by Antal János Benjamin on 2018. 03. 24..
  */
@@ -62,7 +55,6 @@ public class FriendsActivity extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 friendsPresenter.addNewFriendFromFacebook();
-
             }
         });
 
@@ -99,7 +91,7 @@ public class FriendsActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.nav_about) {
             return true;
         }
 
@@ -134,7 +126,7 @@ public class FriendsActivity extends AppCompatActivity
 
     @Override
     public void showFriends(List<Friend> friends) {
-        Snackbar.make(findViewById(R.id.fab), friends.get(friends.size() - 1).getEmail(), Snackbar.LENGTH_LONG)
+        Snackbar.make(findViewById(R.id.fab), friends.get(friends.size() - 1).getFacebookProfilURL(), Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show();
     }
 

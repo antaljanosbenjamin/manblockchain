@@ -1,15 +1,10 @@
-package hu.bme.aut.mobsoft.manblockchain.model;
+package hu.bme.aut.mobsoft.manblockchain.model.facebook;
 
 import java.util.Objects;
 
-
-
-
 import com.google.gson.annotations.SerializedName;
 
-
-
-public class FriendsInfo {
+public class FriendsDTOInfo {
 
     @SerializedName("seed")
     private String seed = null;
@@ -23,10 +18,6 @@ public class FriendsInfo {
     @SerializedName("varsion")
     private String varsion = null;
 
-
-    /**
-     **/
-
     public String getSeed() {
         return seed;
     }
@@ -34,10 +25,6 @@ public class FriendsInfo {
     public void setSeed(String seed) {
         this.seed = seed;
     }
-
-
-    /**
-     **/
 
     public Integer getPage() {
         return page;
@@ -47,10 +34,6 @@ public class FriendsInfo {
         this.page = page;
     }
 
-
-    /**
-     **/
-
     public Integer getResults() {
         return results;
     }
@@ -58,10 +41,6 @@ public class FriendsInfo {
     public void setResults(Integer results) {
         this.results = results;
     }
-
-
-    /**
-     **/
 
     public String getVarsion() {
         return varsion;
@@ -71,7 +50,6 @@ public class FriendsInfo {
         this.varsion = varsion;
     }
 
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -80,11 +58,11 @@ public class FriendsInfo {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        FriendsInfo friendsInfo = (FriendsInfo) o;
-        return Objects.equals(seed, friendsInfo.seed) &&
-                Objects.equals(page, friendsInfo.page) &&
-                Objects.equals(results, friendsInfo.results) &&
-                Objects.equals(varsion, friendsInfo.varsion);
+        FriendsDTOInfo friendsDTOInfo = (FriendsDTOInfo) o;
+        return Objects.equals(seed, friendsDTOInfo.seed) &&
+                Objects.equals(page, friendsDTOInfo.page) &&
+                Objects.equals(results, friendsDTOInfo.results) &&
+                Objects.equals(varsion, friendsDTOInfo.varsion);
     }
 
     @Override
@@ -95,7 +73,7 @@ public class FriendsInfo {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("class FriendsInfo {\n");
+        sb.append("class FriendsDTOInfo {\n");
 
         sb.append("    seed: ").append(toIndentedString(seed)).append("\n");
         sb.append("    page: ").append(toIndentedString(page)).append("\n");

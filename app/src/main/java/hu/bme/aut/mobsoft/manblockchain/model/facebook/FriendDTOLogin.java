@@ -1,15 +1,11 @@
-package hu.bme.aut.mobsoft.manblockchain.model;
+package hu.bme.aut.mobsoft.manblockchain.model.facebook;
 
 import java.util.Objects;
-
-
-
 
 import com.google.gson.annotations.SerializedName;
 
 
-
-public class FriendLogin {
+public class FriendDTOLogin {
 
     @SerializedName("sha1")
     private String sha1 = null;
@@ -29,10 +25,6 @@ public class FriendLogin {
     @SerializedName("md5")
     private String md5 = null;
 
-
-    /**
-     **/
-
     public String getSha1() {
         return sha1;
     }
@@ -40,10 +32,6 @@ public class FriendLogin {
     public void setSha1(String sha1) {
         this.sha1 = sha1;
     }
-
-
-    /**
-     **/
 
     public String getPassword() {
         return password;
@@ -53,10 +41,6 @@ public class FriendLogin {
         this.password = password;
     }
 
-
-    /**
-     **/
-
     public String getSalt() {
         return salt;
     }
@@ -64,10 +48,6 @@ public class FriendLogin {
     public void setSalt(String salt) {
         this.salt = salt;
     }
-
-
-    /**
-     **/
 
     public String getSha256() {
         return sha256;
@@ -77,10 +57,6 @@ public class FriendLogin {
         this.sha256 = sha256;
     }
 
-
-    /**
-     **/
-
     public String getUsername() {
         return username;
     }
@@ -88,10 +64,6 @@ public class FriendLogin {
     public void setUsername(String username) {
         this.username = username;
     }
-
-
-    /**
-     **/
 
     public String getMd5() {
         return md5;
@@ -101,7 +73,6 @@ public class FriendLogin {
         this.md5 = md5;
     }
 
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -110,13 +81,13 @@ public class FriendLogin {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        FriendLogin friendLogin = (FriendLogin) o;
-        return Objects.equals(sha1, friendLogin.sha1) &&
-                Objects.equals(password, friendLogin.password) &&
-                Objects.equals(salt, friendLogin.salt) &&
-                Objects.equals(sha256, friendLogin.sha256) &&
-                Objects.equals(username, friendLogin.username) &&
-                Objects.equals(md5, friendLogin.md5);
+        FriendDTOLogin friendDTOLogin = (FriendDTOLogin) o;
+        return Objects.equals(sha1, friendDTOLogin.sha1) &&
+                Objects.equals(password, friendDTOLogin.password) &&
+                Objects.equals(salt, friendDTOLogin.salt) &&
+                Objects.equals(sha256, friendDTOLogin.sha256) &&
+                Objects.equals(username, friendDTOLogin.username) &&
+                Objects.equals(md5, friendDTOLogin.md5);
     }
 
     @Override
@@ -127,7 +98,7 @@ public class FriendLogin {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("class FriendLogin {\n");
+        sb.append("class FriendDTOLogin {\n");
 
         sb.append("    sha1: ").append(toIndentedString(sha1)).append("\n");
         sb.append("    password: ").append(toIndentedString(password)).append("\n");

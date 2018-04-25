@@ -1,12 +1,10 @@
-package hu.bme.aut.mobsoft.manblockchain.model;
+package hu.bme.aut.mobsoft.manblockchain.model.facebook;
 
 import java.util.Objects;
 
 import com.google.gson.annotations.SerializedName;
 
-
-
-public class FriendName {
+public class FriendDTOName {
 
     @SerializedName("last")
     private String last = null;
@@ -17,10 +15,6 @@ public class FriendName {
     @SerializedName("first")
     private String first = null;
 
-
-    /**
-     **/
-
     public String getLast() {
         return last;
     }
@@ -28,10 +22,6 @@ public class FriendName {
     public void setLast(String last) {
         this.last = last;
     }
-
-
-    /**
-     **/
 
     public String getTitle() {
         return title;
@@ -41,10 +31,6 @@ public class FriendName {
         this.title = title;
     }
 
-
-    /**
-     **/
-
     public String getFirst() {
         return first;
     }
@@ -52,7 +38,6 @@ public class FriendName {
     public void setFirst(String first) {
         this.first = first;
     }
-
 
     @Override
     public boolean equals(Object o) {
@@ -62,10 +47,10 @@ public class FriendName {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        FriendName friendName = (FriendName) o;
-        return Objects.equals(last, friendName.last) &&
-                Objects.equals(title, friendName.title) &&
-                Objects.equals(first, friendName.first);
+        FriendDTOName friendDTOName = (FriendDTOName) o;
+        return Objects.equals(last, friendDTOName.last) &&
+                Objects.equals(title, friendDTOName.title) &&
+                Objects.equals(first, friendDTOName.first);
     }
 
     @Override
@@ -76,7 +61,7 @@ public class FriendName {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("class FriendName {\n");
+        sb.append("class FriendDTOName {\n");
 
         sb.append("    last: ").append(toIndentedString(last)).append("\n");
         sb.append("    title: ").append(toIndentedString(title)).append("\n");

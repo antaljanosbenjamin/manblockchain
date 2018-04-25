@@ -1,24 +1,16 @@
-package hu.bme.aut.mobsoft.manblockchain.model;
+package hu.bme.aut.mobsoft.manblockchain.model.facebook;
 
 import java.util.Objects;
 
-
-
-
 import com.google.gson.annotations.SerializedName;
 
-
-public class FriendId {
+public class FriendDTOId {
 
     @SerializedName("name")
     private String name = null;
 
     @SerializedName("value")
     private String value = null;
-
-
-    /**
-     **/
 
     public String getName() {
         return name;
@@ -28,10 +20,6 @@ public class FriendId {
         this.name = name;
     }
 
-
-    /**
-     **/
-
     public String getValue() {
         return value;
     }
@@ -39,7 +27,6 @@ public class FriendId {
     public void setValue(String value) {
         this.value = value;
     }
-
 
     @Override
     public boolean equals(Object o) {
@@ -49,9 +36,9 @@ public class FriendId {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        FriendId friendId = (FriendId) o;
-        return Objects.equals(name, friendId.name) &&
-                Objects.equals(value, friendId.value);
+        FriendDTOId friendDTOId = (FriendDTOId) o;
+        return Objects.equals(name, friendDTOId.name) &&
+                Objects.equals(value, friendDTOId.value);
     }
 
     @Override
@@ -62,7 +49,7 @@ public class FriendId {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("class FriendId {\n");
+        sb.append("class FriendDTOId {\n");
 
         sb.append("    name: ").append(toIndentedString(name)).append("\n");
         sb.append("    value: ").append(toIndentedString(value)).append("\n");
