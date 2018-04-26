@@ -1,18 +1,22 @@
 package hu.bme.aut.mobsoft.manblockchain.network;
 
-import hu.bme.aut.mobsoft.manblockchain.model.Friend;
+
+import hu.bme.aut.mobsoft.manblockchain.model.facebook.FriendsDTO;
 import retrofit2.Call;
 import retrofit2.http.GET;
 
-/**
- * Created by Antal János Benjamin on 2018. 03. 24..
- */
+public interface FacebookAPI {
 
-public class FacebookAPI {
-    @GET("")
-    Call<Friend> getFriend() {
-        return null;
-    }
+    /**
+     * Get new friend
+     *
+     * @return Call<Friends>
+     */
 
-    ;
+    @GET("api/")
+    public Call<FriendsDTO> getNewFriends();
+
+
+
 }
+

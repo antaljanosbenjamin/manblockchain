@@ -1,6 +1,6 @@
 package hu.bme.aut.mobsoft.manblockchain;
 
-import android.app.Application;
+import com.orm.SugarApp;
 
 import hu.bme.aut.mobsoft.manblockchain.ui.UIModule;
 
@@ -8,7 +8,7 @@ import hu.bme.aut.mobsoft.manblockchain.ui.UIModule;
  * Created by Antal János Benjamin on 2018. 03. 24..
  */
 
-public class ManBlockchainApplication extends Application {
+public class ManBlockchainApplication extends SugarApp {
     public static ManBlockchainApplicationComponent injector;
 
     @Override
