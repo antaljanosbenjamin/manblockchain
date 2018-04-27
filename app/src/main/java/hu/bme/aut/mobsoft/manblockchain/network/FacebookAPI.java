@@ -16,7 +16,5 @@ public interface FacebookAPI {
     @GET("api/")
     public Call<FriendsDTO> getNewFriends();
 
-
-
 }
 

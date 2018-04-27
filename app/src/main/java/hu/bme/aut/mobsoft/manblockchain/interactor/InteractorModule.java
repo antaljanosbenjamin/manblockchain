@@ -11,7 +11,7 @@ import hu.bme.aut.mobsoft.manblockchain.interactor.facebook.FacebookInteractor;
 @Module
 public class InteractorModule {
     @Provides
-    public FacebookInteractor provideArtistsInteractor() {
+    public FacebookInteractor provideFacebookInteractor() {
         return new FacebookInteractor();
     }
 }

@@ -1,5 +1,6 @@
 package hu.bme.aut.mobsoft.manblockchain.ui.about;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -9,6 +10,7 @@ import android.view.ViewGroup;
 
 import javax.inject.Inject;
 
+import hu.bme.aut.mobsoft.manblockchain.ManBlockchainApplication;
 import hu.bme.aut.mobsoft.manblockchain.R;
 import hu.bme.aut.mobsoft.manblockchain.model.AboutInfo;
 
@@ -29,6 +31,14 @@ public class AboutFragment extends Fragment implements AboutScreen {
 
         return view;
     }
+
+    @Override
+    public void onAttach(final Context context) {
+        super.onAttach(context);
+        ManBlockchainApplication.injector.inject(this);
+        aboutPresenter.attachScreen(this);
+    }
+
 
     @Override
     public void showAbout(AboutInfo aboutInfo) {

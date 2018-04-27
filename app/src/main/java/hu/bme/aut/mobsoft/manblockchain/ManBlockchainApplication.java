@@ -17,5 +17,6 @@ public class ManBlockchainApplication extends SugarApp {
 
         injector =
                 DaggerManBlockchainApplicationComponent.builder().uIModule(new UIModule(this)).build();
+        injector.toString();
     }
 }

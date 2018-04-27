@@ -30,14 +30,22 @@ public class FriendsPresenter extends Presenter<FriendsScreen> {
     @Inject
     FacebookInteractor facebookInteractor;
 
+    FriendsScreen screen;
+
     private List<Friend> friends;
+
+    public FriendsPresenter(){
+        friends = new ArrayList<Friend>();
+    }
 
     @Override
     public void attachScreen(FriendsScreen screen) {
         super.attachScreen(screen);
-        friends = new ArrayList<Friend>();
         ManBlockchainApplication.injector.inject(this);
+        this.screen = screen;
         EventBus.getDefault().register(this);
+        screen.showFriends(friends);
+
     }
 
     @Override
@@ -56,6 +64,7 @@ public class FriendsPresenter extends Presenter<FriendsScreen> {
     }
 
     public void addNewFriend(Friend friend) {
+        friends.add(friend);
     }
 
     public void modifyFriend(Friend friend) {
@@ -67,6 +76,10 @@ public class FriendsPresenter extends Presenter<FriendsScreen> {
     public void changeStarOnFriend(Friend friend) {
     }
 
+    public List<Friend> getFriends(){
+        return friends;
+    }
+
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEventMainThread(final GetFriendEvent event) {
         if (event.getThrowable() != null) {
@@ -76,9 +89,9 @@ public class FriendsPresenter extends Presenter<FriendsScreen> {
             }
         } else {
             friends.add(event.getFriend());
-            if (screen != null) {
-                screen.showFriends(friends);
-            }
+//            if (screen != null) {
+//                screen.showFriends(friends);
+//            }
         }
     }
 }

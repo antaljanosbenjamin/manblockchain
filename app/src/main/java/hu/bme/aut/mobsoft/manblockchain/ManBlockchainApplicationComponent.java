@@ -7,9 +7,11 @@ import hu.bme.aut.mobsoft.manblockchain.interactor.facebook.FacebookInteractor;
 import hu.bme.aut.mobsoft.manblockchain.interactor.InteractorModule;
 import hu.bme.aut.mobsoft.manblockchain.network.NetworkModule;
 import hu.bme.aut.mobsoft.manblockchain.ui.UIModule;
+import hu.bme.aut.mobsoft.manblockchain.ui.about.AboutFragment;
 import hu.bme.aut.mobsoft.manblockchain.ui.friends.FriendsActivity;
 import hu.bme.aut.mobsoft.manblockchain.ui.friends.FriendsFragment;
 import hu.bme.aut.mobsoft.manblockchain.ui.friends.FriendsPresenter;
+import hu.bme.aut.mobsoft.manblockchain.ui.friends.FriendsScreen;
 
 /**
  * Created by Antal János Benjamin on 2018. 03. 24..
@@ -24,6 +26,8 @@ public interface ManBlockchainApplicationComponent {
 
     void inject(FriendsPresenter friendsPresenter);
 
-    void inject(FriendsActivity friendsFragment);
+    void inject(FriendsFragment friendFragment);
+
+    void inject(AboutFragment aboutScreen);
 
 }

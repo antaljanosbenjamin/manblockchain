@@ -30,33 +30,20 @@ import hu.bme.aut.mobsoft.manblockchain.ui.about.AboutFragment;
  */
 
 public class FriendsActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, FriendsScreen {
+        implements NavigationView.OnNavigationItemSelectedListener {
 
     private DrawerLayout drawer;
     private Toolbar toolbar;
     private NavigationView navigationView;
     private ActionBarDrawerToggle drawerToggle;
 
-    @Inject
-    FriendsPresenter friendsPresenter;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        ManBlockchainApplication.injector.inject(this);
-        friendsPresenter.attachScreen(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                friendsPresenter.addNewFriendFromFacebook();
-            }
-        });
 
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -66,6 +53,13 @@ public class FriendsActivity extends AppCompatActivity
 
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        if (savedInstanceState == null) {
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager.beginTransaction()
+                    .replace(R.id.frame_container, new FriendsFragment()).commit();
+
+        }
     }
 
     @Override
@@ -98,7 +92,6 @@ public class FriendsActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -122,16 +115,5 @@ public class FriendsActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
-    }
-
-    @Override
-    public void showFriends(List<Friend> friends) {
-        Snackbar.make(findViewById(R.id.fab), friends.get(friends.size() - 1).getFacebookProfilURL(), Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show();
-    }
-
-    @Override
-    public void showNetworkError(String errorMsg) {
-
     }
 }
