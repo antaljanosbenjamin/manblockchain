@@ -35,7 +35,6 @@ public class FriendsActivity extends AppCompatActivity
 
     private DrawerLayout drawer;
     private Toolbar toolbar;
-    private NavigationView navigationView;
     private boolean showOptionsMenu;
 
     @Inject
@@ -56,7 +55,7 @@ public class FriendsActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        navigationView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
         if (savedInstanceState == null) {
@@ -111,12 +110,12 @@ public class FriendsActivity extends AppCompatActivity
         int id = item.getItemId();
         Fragment fragment = null;
         if (id == R.id.nav_friends) {
-            toolbar.setTitle("Friends");
+            toolbar.setTitle(getResources().getString(R.string.menu_friends));
             fragment = new FriendsFragment();
             showOptionsMenu = true;
         } else if (id == R.id.nav_about) {
             showOptionsMenu = false;
-            toolbar.setTitle("About");
+            toolbar.setTitle(getResources().getString(R.string.menu_about));
             fragment = new AboutFragment();
         }
 
@@ -126,7 +125,6 @@ public class FriendsActivity extends AppCompatActivity
                     .replace(R.id.frame_container, fragment).commit();
         }
         invalidateOptionsMenu();
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }

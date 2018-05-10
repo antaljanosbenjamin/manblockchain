@@ -7,11 +7,11 @@
         <item
             android:id="@+id/nav_friends"
             android:icon="@drawable/ic_group_white_48dp"
-            android:title="Friends" />
+            android:title="@string/menu_friends" />
         <item
             android:id="@+id/nav_about"
             android:icon="@drawable/ic_info_outline_white_48dp"
-            android:title="About" />
+            android:title="@string/menu_about" />
     </group>
 
 </menu>

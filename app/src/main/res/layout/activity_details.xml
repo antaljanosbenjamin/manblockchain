@@ -20,56 +20,56 @@
             <EditText
                 android:id="@+id/edit_name"
                 android:layout_height="wrap_content"
-                android:hint="Name"
+                android:hint="@string/details_name_hint"
                 android:inputType="textPersonName"
                 android:layout_width="fill_parent">
             </EditText>
             <EditText
                 android:id="@+id/edit_nickname"
                 android:layout_height="wrap_content"
-                android:hint="Nickname"
+                android:hint="@string/details_nickname_hint"
                 android:inputType="textPersonName"
                 android:layout_width="fill_parent">
             </EditText>
             <EditText
                 android:id="@+id/edit_phone"
                 android:layout_height="wrap_content"
-                android:hint="Phone number"
+                android:hint="@string/details_phone_hint"
                 android:inputType="phone"
                 android:layout_width="fill_parent">
             </EditText>
             <EditText
                 android:id="@+id/edit_email"
                 android:layout_height="wrap_content"
-                android:hint="Email"
+                android:hint="@string/details_email_hint"
                 android:inputType="textEmailAddress"
                 android:layout_width="fill_parent">
             </EditText>
             <EditText
                 android:id="@+id/edit_facebook"
                 android:layout_height="wrap_content"
-                android:hint="Faceboook profile URL"
+                android:hint="@string/details_faceboook_profile_url_hint"
                 android:inputType="textUri"
                 android:layout_width="fill_parent">
             </EditText>
             <EditText
                 android:id="@+id/edit_instagram"
                 android:layout_height="wrap_content"
-                android:hint="Instagram profile URL"
+                android:hint="@string/details_instagram_profile_url_hint"
                 android:inputType="textUri"
                 android:layout_width="fill_parent">
             </EditText>
             <EditText
                 android:id="@+id/edit_linkedin"
                 android:layout_height="wrap_content"
-                android:hint="LinkedIn profile URL"
+                android:hint="@string/details_linkedin_profile_url_hint"
                 android:inputType="textUri"
                 android:layout_width="fill_parent">
             </EditText>
             <EditText
                 android:id="@+id/edit_birthdate"
                 android:layout_height="wrap_content"
-                android:hint="Birthdate"
+                android:hint="@string/details_birthdate_hint"
                 android:inputType="date"
                 android:layout_width="fill_parent"
                 android:cursorVisible="false"
@@ -79,7 +79,7 @@
             <EditText
                 android:id="@+id/edit_comments"
                 android:layout_height="wrap_content"
-                android:hint="Comments"
+                android:hint="@string/details_comments_hint"
                 android:inputType="textMultiLine"
                 android:lines="3"
                 android:layout_width="fill_parent">

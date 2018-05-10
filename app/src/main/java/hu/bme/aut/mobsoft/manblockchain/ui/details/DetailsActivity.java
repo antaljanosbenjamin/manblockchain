@@ -70,11 +70,11 @@ public class DetailsActivity extends AppCompatActivity implements DetailsScreen 
         String title;
         boolean isEditFriend = getIntent().getBooleanExtra(FriendsFragment.IS_FRIEND_EDIT, false);
         if (isEditFriend) {
-            title = "Edit friend";
+            title = getString(R.string.title_edit_friend);
             Long friendId = getIntent().getLongExtra(FriendsFragment.EDITED_FRIEND_ID, 0);
             detailsPresenter.loadFriend(friendId);
         } else {
-            title = "Add new friend";
+            title = getString(R.string.title_add_new_friend);
             detailsPresenter.loadNewFriend();
         }
 

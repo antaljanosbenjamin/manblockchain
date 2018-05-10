@@ -32,23 +32,24 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
-                android:textSize="18dp"
-                android:text="ManBlockChain v1.0" />
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:text="@string/about_name_and_version" />
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
-                android:text="GNU GENERAL PUBLIC LICENSE,\nVersion 3, 29 June 2007" />
+                android:text="@string/about_licence" />
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
-                android:text="Developer's shoe size is 43." />
+                android:text="@string/about_shoe_size" />
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
-                android:text="Developer's favourite beer brand is Rothbeer." />
+                android:text="@string/about_beer" />
         </LinearLayout>
 
     </LinearLayout>
