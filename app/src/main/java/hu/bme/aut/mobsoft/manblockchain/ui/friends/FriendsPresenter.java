@@ -52,7 +52,9 @@ public class FriendsPresenter extends Presenter<FriendsScreen> {
     public void attachScreen(FriendsScreen screen) {
         super.attachScreen(screen);
         ManBlockchainApplication.injector.inject(this);
-        EventBus.getDefault().register(this);
+        if (!EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().register(this);
+        }
     }
 
     @Override
@@ -88,7 +90,9 @@ public class FriendsPresenter extends Presenter<FriendsScreen> {
 
     public void refreshFriendsList() {
         friends = Select.from(Friend.class).orderBy("name").list();
-        screen.showFriends();
+        if (screen != null) {
+            screen.showFriends();
+        }
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)

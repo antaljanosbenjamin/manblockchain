@@ -41,7 +41,6 @@ public class FriendsFragment extends Fragment implements FriendsScreen {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
         View view = inflater.inflate(R.layout.fragment_friends, container, false);
         ListView listview = (ListView) view.findViewById(R.id.friend_list);
         listview.setClickable(true);
@@ -76,8 +75,7 @@ public class FriendsFragment extends Fragment implements FriendsScreen {
     }
 
     public FriendsFragment() {
-        ManBlockchainApplication.injector.inject(this);
-    }
+        ManBlockchainApplication.injector.inject(this);}
 
     @Override
     public void onDetach() {
