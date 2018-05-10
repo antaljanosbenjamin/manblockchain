@@ -37,20 +37,17 @@ public class UIModule {
         return new FriendsPresenter();
     }
 
-
     @Provides
     @Singleton
     public DetailsPresenter provideDetailsPresenter() {
         return new DetailsPresenter();
     }
 
-
     @Provides
     @Singleton
     public AboutPresenter provideAboutPresenter() {
         return new AboutPresenter();
     }
-
 
     @Provides
     @Singleton

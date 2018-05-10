@@ -1,14 +1,21 @@
 package hu.bme.aut.mobsoft.manblockchain.model;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.util.Log;
 
 import com.orm.SugarRecord;
+import com.orm.dsl.Ignore;
+import com.squareup.picasso.Picasso;
 
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 import hu.bme.aut.mobsoft.manblockchain.model.facebook.FriendDTO;
+import hu.bme.aut.mobsoft.manblockchain.model.utils.ImageUtil;
 
 /**
  * Created by Antal János Benjamin on 2018. 04. 25..
@@ -24,6 +31,7 @@ public class Friend extends SugarRecord<Friend> {
     private String linkedinProfilURL;
     private Date birthDate;
     private String comments;
+    private String imageUrl;
     private boolean isStarred;
 
     private String convertName(String name) {
@@ -31,6 +39,7 @@ public class Friend extends SugarRecord<Friend> {
     }
 
     public Friend() {
+        birthDate = new Date();
     }
 
     public Friend(FriendDTO friendDTO) {
@@ -53,6 +62,7 @@ public class Friend extends SugarRecord<Friend> {
         }
         this.birthDate = birthDate;
         this.comments = "";
+        this.imageUrl = friendDTO.getPicture().getThumbnail();
         this.isStarred = false;
     }
 
@@ -116,10 +126,21 @@ public class Friend extends SugarRecord<Friend> {
         return birthDate;
     }
 
+
+    public String getFromattedBirthDate() {
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
+        return formatter.format(birthDate);
+    }
+
     public void setBirthDate(Date birthDate) {
         this.birthDate = birthDate;
     }
 
+    public void setBirthDateSeparate(int year, int month, int day){
+        Calendar c = Calendar.getInstance();
+        c.set(year, month, day, 0, 0);
+        setBirthDate(c.getTime());
+    }
     public String getComments() {
         return comments;
     }
@@ -128,6 +149,17 @@ public class Friend extends SugarRecord<Friend> {
         this.comments = comments;
     }
 
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public boolean hasProfileImage(){
+        return this.imageUrl != null;
+    }
     public boolean isStarred() {
         return isStarred;
     }

@@ -31,7 +31,7 @@ public class FriendsAdapter extends BaseAdapter {
     private FriendsPresenter friendsPresenter;
 
     private static class ViewHolder {
-        View listItem;
+        ImageView image;
         TextView name;
         TextView phone;
         TextView email;
@@ -68,7 +68,7 @@ public class FriendsAdapter extends BaseAdapter {
             viewHolder = new ViewHolder();
             LayoutInflater inflater = LayoutInflater.from(context);
             view = inflater.inflate(R.layout.friend_item, null);
-            viewHolder.listItem = view;
+            viewHolder.image = (ImageView) view.findViewById(R.id.profile_image);
             viewHolder.name = (TextView) view.findViewById(R.id.name);
             viewHolder.phone = (TextView) view.findViewById(R.id.phone);
             viewHolder.email = (TextView) view.findViewById(R.id.email);
@@ -78,6 +78,13 @@ public class FriendsAdapter extends BaseAdapter {
         } else {
             viewHolder = (ViewHolder) view.getTag();
         }
+
+        if (friend.hasProfileImage()) {
+            Picasso.get().load(friend.getImageUrl()).into(viewHolder.image);
+        } else {
+            viewHolder.image.setImageResource(R.mipmap.ic_launcher);
+        }
+
         viewHolder.star.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
