@@ -17,6 +17,7 @@ import hu.bme.aut.mobsoft.manblockchain.model.facebook.FriendDTO;
 public class Friend extends SugarRecord<Friend> {
     private String name;
     private String nickName;
+    private String email;
     private String phoneNumber;
     private String facebookProfilURL;
     private String instagramProfilURL;
@@ -36,6 +37,7 @@ public class Friend extends SugarRecord<Friend> {
 
         this.name = this.convertName(friendDTO.getName().getFirst()) + " " + this.convertName(friendDTO.getName().getLast());
         this.nickName = "";
+        this.email = friendDTO.getEmail();
         this.phoneNumber = friendDTO.getPhone();
         String username = friendDTO.getEmail().split("@")[0];
         this.facebookProfilURL = "https://facebook.com/profile/" + username;
@@ -68,6 +70,14 @@ public class Friend extends SugarRecord<Friend> {
 
     public void setNickName(String nickName) {
         this.nickName = nickName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPhoneNumber() {

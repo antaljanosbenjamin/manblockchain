@@ -61,6 +61,7 @@ public class FriendsAdapter extends BaseAdapter {
         final Friend friend = friendList.get(position);
         TextView nameView = (TextView) vi.findViewById(R.id.name);
         TextView phone = (TextView) vi.findViewById(R.id.phone);
+        TextView email = (TextView) vi.findViewById(R.id.email);
         ImageView deleteBtn = (ImageView) vi.findViewById(R.id.delete);
         deleteBtn.setOnClickListener(new View.OnClickListener()
         {
@@ -73,6 +74,7 @@ public class FriendsAdapter extends BaseAdapter {
 
         nameView.setText(friend.getName());
         phone.setText(friend.getPhoneNumber());
+        email.setText(friend.getEmail());
 
         return vi;
     }
