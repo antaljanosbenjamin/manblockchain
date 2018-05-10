@@ -8,6 +8,7 @@ import hu.bme.aut.mobsoft.manblockchain.interactor.InteractorModule;
 import hu.bme.aut.mobsoft.manblockchain.network.NetworkModule;
 import hu.bme.aut.mobsoft.manblockchain.ui.UIModule;
 import hu.bme.aut.mobsoft.manblockchain.ui.about.AboutFragment;
+import hu.bme.aut.mobsoft.manblockchain.ui.details.DetailsActivity;
 import hu.bme.aut.mobsoft.manblockchain.ui.friends.FriendsActivity;
 import hu.bme.aut.mobsoft.manblockchain.ui.friends.FriendsFragment;
 import hu.bme.aut.mobsoft.manblockchain.ui.friends.FriendsPresenter;
@@ -28,6 +29,10 @@ public interface ManBlockchainApplicationComponent {
 
     void inject(FriendsFragment friendFragment);
 
+    void inject(DetailsActivity detailsActivity);
+
     void inject(AboutFragment aboutScreen);
+
+    void inject(FriendsActivity friendsActivity);
 
 }

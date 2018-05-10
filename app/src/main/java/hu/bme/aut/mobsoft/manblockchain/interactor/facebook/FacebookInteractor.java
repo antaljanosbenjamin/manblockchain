@@ -44,11 +44,7 @@ public class FacebookInteractor {
                 throw new Exception("Response doesn't contain friend!");
             }
             FriendDTO friendDTO = response.body().getResults().get(0);
-            String dateStr = friendDTO.getDob().split(" ")[0];
-            SimpleDateFormat parser = new SimpleDateFormat("yyyy-MM-dd");
-            Date dob = parser.parse(dateStr);
-            Friend friend = new Friend(friendDTO.getName().getFirst() + " " + friendDTO.getName().getLast(), "", friendDTO.getPhone(), "https://facebook.com/profile/" + friendDTO.getEmail().split("@")[0], "", "", dob, "");
-            event.setFriend(friend);
+            event.setFriend(friendDTO);
         } catch (Exception exp) {
             event.setThrowable(exp);
         }

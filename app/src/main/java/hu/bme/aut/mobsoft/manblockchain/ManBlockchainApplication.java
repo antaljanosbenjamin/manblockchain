@@ -14,7 +14,6 @@ public class ManBlockchainApplication extends SugarApp {
     @Override
     public void onCreate() {
         super.onCreate();
-
         injector =
                 DaggerManBlockchainApplicationComponent.builder().uIModule(new UIModule(this)).build();
         injector.toString();

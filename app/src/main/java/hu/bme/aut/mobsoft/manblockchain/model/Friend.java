@@ -1,8 +1,14 @@
 package hu.bme.aut.mobsoft.manblockchain.model;
 
+import android.content.Context;
+
 import com.orm.SugarRecord;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import hu.bme.aut.mobsoft.manblockchain.model.facebook.FriendDTO;
 
 /**
  * Created by Antal János Benjamin on 2018. 04. 25..
@@ -17,18 +23,35 @@ public class Friend extends SugarRecord<Friend> {
     private String linkedinProfilURL;
     private Date birthDate;
     private String comments;
+    private boolean isStarred;
 
-    public Friend(){}
+    private String convertName(String name) {
+        return name.substring(0, 1).toUpperCase() + name.substring(1);
+    }
 
-    public Friend(String name, String nickName, String phoneNumber, String facebookProfilURL, String instagramProfilURL, String linkedinProfilURL, Date birthDate, String comments) {
-        this.name = name;
-        this.nickName = nickName;
-        this.phoneNumber = phoneNumber;
-        this.facebookProfilURL = facebookProfilURL;
-        this.instagramProfilURL = instagramProfilURL;
-        this.linkedinProfilURL = linkedinProfilURL;
+    public Friend() {
+    }
+
+    public Friend(FriendDTO friendDTO) {
+
+        this.name = this.convertName(friendDTO.getName().getFirst()) + " " + this.convertName(friendDTO.getName().getLast());
+        this.nickName = "";
+        this.phoneNumber = friendDTO.getPhone();
+        String username = friendDTO.getEmail().split("@")[0];
+        this.facebookProfilURL = "https://facebook.com/profile/" + username;
+        this.instagramProfilURL = "";
+        this.linkedinProfilURL = "";
+        String dateStr = friendDTO.getDob().split(" ")[0];
+        SimpleDateFormat parser = new SimpleDateFormat("yyyy-MM-dd");
+        Date birthDate = new Date();
+        try {
+            birthDate = parser.parse(dateStr);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         this.birthDate = birthDate;
-        this.comments = comments;
+        this.comments = "";
+        this.isStarred = false;
     }
 
     public String getName() {
@@ -93,5 +116,14 @@ public class Friend extends SugarRecord<Friend> {
 
     public void setComments(String comments) {
         this.comments = comments;
+    }
+
+    public boolean isStarred() {
+        return isStarred;
+    }
+
+    public boolean changeStarred() {
+        isStarred = !isStarred;
+        return isStarred;
     }
 }

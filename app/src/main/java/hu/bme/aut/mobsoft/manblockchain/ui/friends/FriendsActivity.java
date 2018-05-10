@@ -12,6 +12,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
@@ -35,13 +36,17 @@ public class FriendsActivity extends AppCompatActivity
     private DrawerLayout drawer;
     private Toolbar toolbar;
     private NavigationView navigationView;
-    private ActionBarDrawerToggle drawerToggle;
+    private boolean showOptionsMenu;
+
+    @Inject
+    FriendsPresenter friendsPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ManBlockchainApplication.injector.inject(this);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -60,6 +65,7 @@ public class FriendsActivity extends AppCompatActivity
                     .replace(R.id.frame_container, new FriendsFragment()).commit();
 
         }
+        showOptionsMenu = true;
     }
 
     @Override
@@ -74,7 +80,13 @@ public class FriendsActivity extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        return false;
+        if (!this.showOptionsMenu){
+            return false;
+        }
+        // Inflate the menu items for use in the action bar
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.friends_action_menu, menu);
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
@@ -85,14 +97,14 @@ public class FriendsActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.nav_about) {
+        if (id == R.id.add_facebook_friend) {
+            friendsPresenter.addNewFriendFromFacebook();
             return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
@@ -101,7 +113,9 @@ public class FriendsActivity extends AppCompatActivity
         if (id == R.id.nav_friends) {
             toolbar.setTitle("Friends");
             fragment = new FriendsFragment();
+            showOptionsMenu = true;
         } else if (id == R.id.nav_about) {
+            showOptionsMenu = false;
             toolbar.setTitle("About");
             fragment = new AboutFragment();
         }
@@ -111,7 +125,7 @@ public class FriendsActivity extends AppCompatActivity
             fragmentManager.beginTransaction()
                     .replace(R.id.frame_container, fragment).commit();
         }
-
+        invalidateOptionsMenu();
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;

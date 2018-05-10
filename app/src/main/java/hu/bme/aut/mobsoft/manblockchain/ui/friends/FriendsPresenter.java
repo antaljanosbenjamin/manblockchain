@@ -1,5 +1,11 @@
 package hu.bme.aut.mobsoft.manblockchain.ui.friends;
 
+import android.content.Intent;
+import android.util.Log;
+
+import com.orm.query.Condition;
+import com.orm.query.Select;
+
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -16,6 +22,9 @@ import hu.bme.aut.mobsoft.manblockchain.interactor.facebook.events.GetFriendEven
 import hu.bme.aut.mobsoft.manblockchain.ManBlockchainApplication;
 import hu.bme.aut.mobsoft.manblockchain.model.Friend;
 import hu.bme.aut.mobsoft.manblockchain.ui.Presenter;
+import hu.bme.aut.mobsoft.manblockchain.ui.details.DetailsActivity;
+
+import static hu.bme.aut.mobsoft.manblockchain.ui.friends.FriendsFragment.EDITED_FRIEND_ID;
 
 /**
  * Created by Antal János Benjamin on 2018. 03. 24..
@@ -30,22 +39,18 @@ public class FriendsPresenter extends Presenter<FriendsScreen> {
     @Inject
     FacebookInteractor facebookInteractor;
 
-    FriendsScreen screen;
-
     private List<Friend> friends;
+    private static final String TAG = "FriendPresenter";
 
-    public FriendsPresenter(){
-        friends = new ArrayList<Friend>();
+    public FriendsPresenter() {
+        friends = Friend.listAll(Friend.class);
     }
 
     @Override
     public void attachScreen(FriendsScreen screen) {
         super.attachScreen(screen);
         ManBlockchainApplication.injector.inject(this);
-        this.screen = screen;
         EventBus.getDefault().register(this);
-        screen.showFriends(friends);
-
     }
 
     @Override
@@ -63,20 +68,27 @@ public class FriendsPresenter extends Presenter<FriendsScreen> {
         });
     }
 
-    public void addNewFriend(Friend friend) {
-        friends.add(friend);
+    public void modifyFriend(Long friendId) {
     }
 
-    public void modifyFriend(Friend friend) {
+    public void deleteFriend(Long friendId) {
+        Friend friend = Select.from(Friend.class).where(Condition.prop("id").eq(friendId)).first();
+        friends.remove(friend);
+        friend.delete();
+        refreshFriendsList();
     }
 
-    public void deleteFriend(Friend friend) {
+    public void changeStarOnFriend(Long friendId) {
+        Friend friend = Select.from(Friend.class).where(Condition.prop("id").eq(friendId)).first();
+        friend.changeStarred();
     }
 
-    public void changeStarOnFriend(Friend friend) {
+    public void refreshFriendsList() {
+        friends = Friend.listAll(Friend.class);
+        screen.showFriends(friends);
     }
 
-    public List<Friend> getFriends(){
+    public List<Friend> getFriends() {
         return friends;
     }
 
@@ -88,10 +100,12 @@ public class FriendsPresenter extends Presenter<FriendsScreen> {
                 screen.showNetworkError(event.getThrowable().getMessage());
             }
         } else {
-            friends.add(event.getFriend());
-//            if (screen != null) {
-//                screen.showFriends(friends);
-//            }
+            Friend newFriend = new Friend( event.getFriendDTO());
+            newFriend.save();
+            friends.add(newFriend);
+            if (screen != null) {
+                screen.showFriends(friends);
+            }
         }
     }
 }
