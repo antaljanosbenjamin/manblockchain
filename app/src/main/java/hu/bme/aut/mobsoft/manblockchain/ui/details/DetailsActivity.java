@@ -1,11 +1,15 @@
 package hu.bme.aut.mobsoft.manblockchain.ui.details;
 
+import android.app.DatePickerDialog;
+import android.app.DatePickerDialog.OnDateSetListener;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.DatePicker;
 import android.widget.EditText;
 
 import com.orm.query.Condition;
@@ -69,6 +73,17 @@ public class DetailsActivity extends AppCompatActivity implements DetailsScreen 
         instagramUrl = (EditText) findViewById(R.id.edit_instagram);
         linkedInUrl = (EditText) findViewById(R.id.edit_linkedin);
         birthdate = (EditText) findViewById(R.id.edit_birthdate);
+        birthdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new DatePickerDialog(DetailsActivity.this, 0,new OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                        birthdate.setText("" + year + month + dayOfMonth);
+                    }
+                }, 2018,5,11).show();
+            }
+        });
         comments = (EditText) findViewById(R.id.edit_comments);
 
         loadFriend(friend);
@@ -79,11 +94,11 @@ public class DetailsActivity extends AppCompatActivity implements DetailsScreen 
         name.setText(friend.getName());
         phone.setText(friend.getPhoneNumber());
         email.setText(friend.getEmail());
-        facebookUrl.setText(friend.getName());
-        instagramUrl.setText(friend.getName());
-        linkedInUrl.setText(friend.getName());
-        birthdate.setText(friend.getName());
-        comments.setText(friend.getName());
+        facebookUrl.setText(friend.getFacebookProfilURL());
+        instagramUrl.setText(friend.getInstagramProfilURL());
+        linkedInUrl.setText(friend.getLinkedinProfilURL());
+        birthdate.setText("");
+        comments.setText(friend.getComments());
     }
 
     @Override

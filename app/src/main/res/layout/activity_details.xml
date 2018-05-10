@@ -71,7 +71,8 @@
                 android:layout_height="wrap_content"
                 android:hint="Birthdate"
                 android:inputType="date"
-                android:layout_width="fill_parent">
+                android:layout_width="fill_parent"
+                android:editable="false">
             </EditText>
             <EditText
                 android:id="@+id/edit_comments"

@@ -10,7 +10,7 @@ import hu.bme.aut.mobsoft.manblockchain.model.Friend;
 
 public interface FriendsScreen {
 
-    void showFriends(List<Friend> friends);
+    void showFriends();
 
     void showNetworkError(String errorMsg);
 }

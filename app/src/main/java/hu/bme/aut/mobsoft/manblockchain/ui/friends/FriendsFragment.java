@@ -28,13 +28,12 @@ import hu.bme.aut.mobsoft.manblockchain.ui.details.DetailsActivity;
  * Created by Antal János Benjamin on 2018. 03. 24..
  */
 
-public class FriendsFragment extends Fragment implements FriendsScreen, AdapterView.OnItemClickListener {
+public class FriendsFragment extends Fragment implements FriendsScreen {
 
     public static final String IS_FRIEND_EDIT = "IS_FRIEND_EDIT";
     public static final String EDITED_FRIEND_ID = "EDITED_FRIEND_ID";
 
-    private ListView listview;
-    private List<Friend> friendsList;
+    private FriendsAdapter adapter;
 
     @Inject
     FriendsPresenter friendsPresenter;
@@ -44,9 +43,8 @@ public class FriendsFragment extends Fragment implements FriendsScreen, AdapterV
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_friends, container, false);
-        listview = (ListView) view.findViewById(R.id.friend_list);
+        ListView listview = (ListView) view.findViewById(R.id.friend_list);
         listview.setClickable(true);
-        listview.setOnItemClickListener(this);
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -60,7 +58,8 @@ public class FriendsFragment extends Fragment implements FriendsScreen, AdapterV
                 onAddNewFriend();
             }
         });
-        friendsList = new ArrayList<>();
+        adapter = new FriendsAdapter(getContext(), friendsPresenter, new ArrayList<Friend>());
+        listview.setAdapter(adapter);
         return view;
     }
 
@@ -86,10 +85,9 @@ public class FriendsFragment extends Fragment implements FriendsScreen, AdapterV
         super.onDetach();
     }
 
-    //@Override
-    public void showFriends(List<Friend> friends) {
-        friendsList = friends;
-        listview.setAdapter(new FriendsAdapter(getContext(), friendsPresenter, friends));
+    @Override
+    public void showFriends() {
+        adapter.notifyDataSetChanged();
     }
 
     public void onAddNewFriend() {
@@ -97,10 +95,6 @@ public class FriendsFragment extends Fragment implements FriendsScreen, AdapterV
         intent.putExtra(IS_FRIEND_EDIT, false);
         intent.putExtra(EDITED_FRIEND_ID, 0L);
         startActivity(intent);
-    }
-
-    public void addFriendFromFacebook() {
-        friendsPresenter.addNewFriendFromFacebook();
     }
 
     public void onEditFriend(Long friendId) {
@@ -113,11 +107,5 @@ public class FriendsFragment extends Fragment implements FriendsScreen, AdapterV
     //@Override
     public void showNetworkError(String errorMsg) {
         Toast.makeText(getContext(), errorMsg, Toast.LENGTH_LONG).show();
-    }
-
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Friend clickedFriend = friendsList.get(position);
-        friendsPresenter.modifyFriend(clickedFriend.getId());
     }
 }

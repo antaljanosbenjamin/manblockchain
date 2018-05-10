@@ -11,6 +11,8 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.concurrent.Executor;
 
@@ -68,28 +70,25 @@ public class FriendsPresenter extends Presenter<FriendsScreen> {
         });
     }
 
-    public void modifyFriend(Long friendId) {
+    public void modifyFriend(int position) {
     }
 
-    public void deleteFriend(Long friendId) {
-        Friend friend = Select.from(Friend.class).where(Condition.prop("id").eq(friendId)).first();
+    public void deleteFriend(int position) {
+        Friend friend = friends.get(position);
         friends.remove(friend);
         friend.delete();
         refreshFriendsList();
     }
 
-    public void changeStarOnFriend(Long friendId) {
-        Friend friend = Select.from(Friend.class).where(Condition.prop("id").eq(friendId)).first();
+    public void changeStarOnFriend(int position) {
+        Friend friend = friends.get(position);
         friend.changeStarred();
+        friend.save();
     }
 
     public void refreshFriendsList() {
-        friends = Friend.listAll(Friend.class);
-        screen.showFriends(friends);
-    }
-
-    public List<Friend> getFriends() {
-        return friends;
+        friends = Select.from(Friend.class).orderBy("name").list();
+        screen.showFriends();
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
@@ -103,9 +102,23 @@ public class FriendsPresenter extends Presenter<FriendsScreen> {
             Friend newFriend = new Friend( event.getFriendDTO());
             newFriend.save();
             friends.add(newFriend);
+            Collections.sort(friends, new Comparator<Friend>() {
+                @Override
+                public int compare(Friend f1, Friend f2) {
+                    return f1.getName().compareTo(f2.getName());
+                }
+            });
             if (screen != null) {
-                screen.showFriends(friends);
+                screen.showFriends();
             }
         }
+    }
+
+    public int getFriendsCount(){
+        return friends.size();
+    }
+
+    public Friend getFriendByPosition(int position){
+        return friends.get(position);
     }
 }
