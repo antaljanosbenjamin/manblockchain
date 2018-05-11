@@ -10,5 +10,5 @@ public interface DetailsScreen {
 
     void loadFriend(Friend friend);
 
-    void saveFriend(Friend friend);
+    void saveFriend();
 }
