@@ -21,7 +21,7 @@ import hu.bme.aut.mobsoft.manblockchain.model.utils.ImageUtil;
  * Created by Antal János Benjamin on 2018. 04. 25..
  */
 
-public class Friend extends SugarRecord<Friend> {
+public class Friend extends SugarRecord {
     private String name;
     private String nickName;
     private String email;
