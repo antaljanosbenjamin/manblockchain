@@ -39,6 +39,17 @@ public class Friend extends SugarRecord {
     }
 
     public Friend() {
+
+        name = "";
+        nickName = "";
+        email = "";
+        phoneNumber = "";
+        facebookProfilURL = "";
+        instagramProfilURL = "";
+        linkedinProfilURL = "";
+        comments = "";
+        imageUrl = "";
+        isStarred = false;
         birthDate = new Date();
     }
 

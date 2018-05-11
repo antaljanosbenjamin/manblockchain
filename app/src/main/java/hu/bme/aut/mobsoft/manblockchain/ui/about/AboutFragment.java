@@ -12,7 +12,6 @@ import javax.inject.Inject;
 
 import hu.bme.aut.mobsoft.manblockchain.ManBlockchainApplication;
 import hu.bme.aut.mobsoft.manblockchain.R;
-import hu.bme.aut.mobsoft.manblockchain.model.AboutInfo;
 
 /**
  * Created by Antal János Benjamin on 2018. 03. 25..

@@ -72,9 +72,6 @@ public class FriendsPresenter extends Presenter<FriendsScreen> {
         });
     }
 
-    public void modifyFriend(int position) {
-    }
-
     public void deleteFriend(int position) {
         Friend friend = friends.get(position);
         friends.remove(friend);

@@ -97,6 +97,7 @@ public class FriendsAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 friendsPresenter.deleteFriend(position);
+                notifyDataSetChanged();
             }
         });
 
@@ -109,18 +110,5 @@ public class FriendsAdapter extends BaseAdapter {
             viewHolder.star.setImageResource(R.drawable.ic_star_grey_48dp);
         }
         return view;
-    }
-
-    private static class ImageDownloadTask extends AsyncTask<String, Integer, Bitmap> {
-
-        @Override
-        protected Bitmap doInBackground(String... url) {
-            try {
-                return Picasso.get().load(url[0]).get();
-            } catch (IOException e) {
-                e.printStackTrace();
-                return null;
-            }
-        }
     }
 }
