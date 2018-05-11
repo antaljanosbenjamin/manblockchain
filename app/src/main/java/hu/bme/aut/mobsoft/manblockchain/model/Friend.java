@@ -169,7 +169,7 @@ public class Friend extends SugarRecord {
     }
 
     public boolean hasProfileImage(){
-        return this.imageUrl != null;
+        return this.imageUrl != null && !this.imageUrl.isEmpty();
     }
     public boolean isStarred() {
         return isStarred;
