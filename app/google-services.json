@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "379473910491",
+    "firebase_url": "https://manblockchain-17e4e.firebaseio.com",
+    "project_id": "manblockchain-17e4e",
+    "storage_bucket": "manblockchain-17e4e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:379473910491:android:dcc9cc11c7a39a23",
+        "android_client_info": {
+          "package_name": "hu.bme.aut.mobsoft.manblockchain"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "379473910491-6ul6obuc7f8n7fmlhk5485797nigufbk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB3WQSuALWkHgTGueo-1SJ4sbQRIDaLy1Y"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
